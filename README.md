@@ -106,6 +106,12 @@ One command starts:
 
 Use `MARKET_DATA_PROVIDER=simulation` for repeatable UI development. The header and banner will say `SIMULATION DATA`; simulation is never represented as live.
 
+## Vercel deployment
+
+The Next.js interface can be deployed to Vercel. Vercel builds use the standard `.next` output directory; local Windows builds retain `.next-build` to avoid development-cache collisions.
+
+The market-data service is a separate, stateful Node process and is not started by a Vercel Next.js deployment. The current browser client intentionally connects to `127.0.0.1:8787`, so a hosted interface will remain disconnected until the feed service is deployed to a suitable Node host and the client transport is configured for that public HTTPS/WSS endpoint. Never add the Upstox token to a `NEXT_PUBLIC_` variable.
+
 ## Upstox setup
 
 1. Open the Upstox Developer Apps page and generate an Analytics Token from the Analytics tab.
